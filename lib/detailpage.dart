@@ -141,7 +141,7 @@ class _DetailpageState extends State<Detailpage> {
                   children: [
                     
                     Positioned(
-                      top: -50,
+                      top: -53,
                       right: 20,
                       left: 20,
                      child: Container(
