@@ -3,18 +3,23 @@ import 'package:flutter_application_1/getstarted.dart';
 
 
 void main() {
-  runApp(Myapp());
+  runApp(MyApp());
 }
 
-class Myapp extends StatelessWidget {
-  const Myapp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
       title: "Weather App",
-      home: Getstarted(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(  
+       primarySwatch: Colors.blue,
+      scaffoldBackgroundColor: Colors.white,
+),
+       home: const Getstarted(),
+
     );
   }
 }

@@ -15,19 +15,19 @@ class Welcome extends StatefulWidget {
 class _WelcomeState extends State<Welcome> {
  
   // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
-  List<City> cities = City.citiesList.where((City) => City.isdefault== false).toList();
+  List<City> cities = City.citiesList.where((city) => city.isDefault == false).toList();
   List<City> selectedCities = City.getSelectedCities();
   
     @override
   Widget build(BuildContext context) {
-    Constants myconstants = Constants();
+    final constants = Constants();
       
   Size size = MediaQuery.of(context).size;
   
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: myconstants.secondarycolor,
+        backgroundColor: constants.secondarycolor,
         // ignore: prefer_interpolation_to_compose_strings
         title: Text('${selectedCities.length} selected'),
 
@@ -42,15 +42,13 @@ class _WelcomeState extends State<Welcome> {
             width: size.width,
             decoration: BoxDecoration(
               border: cities[index].isSelected ==true? Border.all(
-                // ignore: deprecated_member_use
-                color: myconstants.secondarycolor.withOpacity(.6),
-                width: 2,
+                color: constants.secondarycolor.withOpacity(.6),
+                  width: 2, 
               ) : Border.all(color: Colors.white),
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               boxShadow: [
                 BoxShadow(
-                  // ignore: deprecated_member_use 
-                  color: myconstants.primarycolor.withOpacity(.2),
+                  color: constants.primarycolor.withOpacity(.2),
                   spreadRadius: 5,
                   blurRadius: 7,
                   offset: const Offset(0, 2),
@@ -63,17 +61,17 @@ class _WelcomeState extends State<Welcome> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      cities[index].isSelected = !cities[index].isSelected;
+            setState(() {
+            cities[index].isSelected = !cities[index].isSelected;
+            selectedCities = cities.where((city) => city.isSelected).toList();
+             });
+             },
 
-                    });
-                  
-                  },
                   child: Image.asset(cities[index].isSelected == true? 'assets/Checked.png': 'assets/Unchecked.png', width: 30)),
                 const SizedBox(width: 10),
                 Text(cities[index].city, style: TextStyle(
                   fontSize: 16,
-                  color: cities[index].isSelected==true? myconstants.primarycolor: Colors.black
+                  color: cities[index].isSelected==true? constants.primarycolor: Colors.black
                 ),),
               ],
             ),
@@ -81,10 +79,10 @@ class _WelcomeState extends State<Welcome> {
           },
       ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: myconstants.secondarycolor,
+          backgroundColor: constants.secondarycolor,
           child: const Icon(Icons.pin_drop),
           onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Home()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>const Home()));
           },
         ), );
   }
